@@ -1,6 +1,27 @@
 # docker-compose.yml
 services:
-  app:
+  phoenix:
+    image: arizephoenix/phoenix:latest # Must be greater than 4.0 version to work
+    depends_on:
+      - db
+    ports:
+      - 6006:6006  # PHOENIX_PORT
+      - 4317:4317  # PHOENIX_GRPC_PORT
+      - 9090:9090  # [Optional] PROMETHEUS PORT IF ENABLED
+    environment:
+      - PHOENIX_SQL_DATABASE_URL=postgresql://postgres:postgres@db:5432/postgres
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - 5432
+    volumes:
+      - database_data:/var/lib/postgresql/data
+  proxy_cache_server:
     build: .
     ports:
       - "8080:8080"
@@ -14,3 +35,22 @@ services:
       - .env:/app/.env:ro
     env_file:
       - ./.env
+
+  caddy:
+    image: caddy:latest
+    ports: ["80:80","443:443"]
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    environment:
+      EMAIL: npatta01@gmail.com
+    restart: unless-stopped
+
+volumes:
+  database_data:
+    driver: local
+  caddy_data: 
+    driver: local
+  caddy_config: 
+    driver: local

@@ -1,0 +1,14 @@
+{
+  email {env.EMAIL}
+}
+
+proxy.np-training.dev {
+  encode zstd gzip
+  handle_path /healthz { respond "ok" 200 }
+  reverse_proxy research-proxy:8080
+}
+
+traces.np-training.dev {
+  encode zstd gzip
+  reverse_proxy phoenix:6006
+}
