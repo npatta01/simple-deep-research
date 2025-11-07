@@ -12,7 +12,9 @@ PHOENIX_PROJECT_NAME=npatta01
 
 # using own keys
 #USING_OWN_KEYS=true
+#PHOENIX_COLLECTOR_ENDPOINT=""
 #OPENAI_API_KEY="..."
 #TAVILY_API_KEY=".."
 #OPENAI_BASE_URL="https://api.openai.com/v1"
 #TAVILY_BASE_URL="https://api.tavily.com/search"
+
