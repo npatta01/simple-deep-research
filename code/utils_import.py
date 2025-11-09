@@ -1,7 +1,7 @@
 # Utility helpers for the LangGraph notebook
 
-import dotenv
 import os
+import constants
 
 # Tracing imports are optional and only used when init_tracer is called
 from opentelemetry import trace
@@ -11,10 +11,10 @@ from openinference.instrumentation.langchain import LangChainInstrumentor
 
 # Load local environment file used by the workshop
 # Keep the same relative path as the notebook used
-dotenv.load_dotenv("../env_workshop")
 
-OPENAI_BASE_URL = os.environ.get("OPENAI_BASE_URL")
-PHOENIX_PROJECT_NAME = os.environ.get("PHOENIX_PROJECT_NAME")
+OPENAI_BASE_URL = constants.OPENAI_BASE_URL
+PHOENIX_PROJECT_NAME = constants.PHOENIX_PROJECT_NAME
+TAVILY_BASE_URL = constants.TAVILY_BASE_URL
 
 
 # configure the Phoenix tracer

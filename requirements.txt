@@ -6,3 +6,4 @@ arize-phoenix-otel==0.13.*
 openinference-instrumentation-langchain==0.1.*
 rich==14.2.*
 tavily-python==0.7.*
+jsonpickle==4.1.*

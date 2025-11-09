@@ -4,7 +4,7 @@
 
  (restrict_ip) {
   @not_allowed {
-    not remote_ip 34.11.200.211 74.105.161.196 173.70.7.122 12.206.216.36
+    not remote_ip 34.11.200.211 74.105.161.196 173.70.7.122 12.206.216.36 4.155.74.50
 
   }
   respond @not_allowed "Access denied" 403
